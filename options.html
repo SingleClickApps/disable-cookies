@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Options - Disable Cookies</title>
+<script src="options.js"></script>
+<link href="options.css" rel="stylesheet" type="text/css">
+</head>
+<body style="text-align:left; padding:25px;">
+
+  <h2>Disable Cookies Options:</h2>
+  
+  <p><label for="contextMenu"><input id="contextMenu" type="checkbox" /> 
+  Add cookie exceptions  shortcut to the context menu</label><br />
+  </p>
+  
+  <p><label for="autoRefresh" title="Automaticly reload page after enabling/disabling cookies"><input id="autoRefresh" type="checkbox" /> 
+  Auto-Reload on ON/OFF</label><br /><br /></p>
+  
+  <h3>Cookie settings</h3>
+  <p>
+<button id="openCookieSettings">Open Cookie settings</button> <button id="clearCookieSettings" title="Clear all rules set by Disable Cookies">Clear cookie settings set by this extension</button><br /><br /></p>
+
+  <h3>Local Storage rules</h3>
+
+  <p>Every existing rule is saved here and can be reintroduced at will. (Incognito rules aren't saved)</p>
+
+  <p><textarea name="cookiesTF_rules" id="cookiesTF_rules" cols="30" rows="10" style="width:100%;"></textarea></p>
+
+  <p>
+    <button id="importRules">Add these rules to cookie exceptions </button> <button id="clearLocalStorageRules">Clear Local Storage rules</button>
+    <br>
+    <br /></p>
+  <h3>More info:<br />
+  </h3>
+<a href="http://singleclickapps.com/disable-cookies/">http://singleclickapps.com/disable-cookies
+
+  
+</a>
+</body>
+</html>
