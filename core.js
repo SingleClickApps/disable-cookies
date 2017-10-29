@@ -321,7 +321,7 @@ function toggleContextMenu() {
 
 function openCksPanel() {
 	return function(info, tab) {
-		chrome.tabs.create({"url":"chrome://chrome/settings/contentExceptions#cookies", "selected":true});
+		chrome.tabs.create({"url":"chrome://settings/content/cookies", "selected":true});
 	};
 }
 
