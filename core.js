@@ -1,8 +1,8 @@
 /*
  * Disable Cookies Chrome Extension
- * www.singleclickapps.com 
+ * www.singleclickapps.com
  *
- * Distributed under GPL License. 
+ * Distributed under GPL License.
  * https://github.com/SingleClickApps
  */
 
@@ -19,8 +19,7 @@ init();
 
 if(chromeContentSettings) {
 	
-	var extractHostname = new RegExp('^(?:f|ht)tp(?:s)?\://([^/]+)', 'im'),
-		forbiddenOrigin = /(chrome\:\/\/)/g,
+	var forbiddenOrigin = /(chrome\:\/\/)/g,
 		incognito,
 		url,
 		setting,
@@ -100,9 +99,29 @@ function changeSettings() {
 
 			setting = details.setting;
 			if (setting) {
-				var pattern = /^file:/.test(url) ? url : url.match(extractHostname)[0]+'/*';
+				var urlParser = new URL(url);
+				var pattern = /^file:/.test(url) ? url : (urlParser.hostname + '/*');
+
+				// If this is not a file
+				if (!/^file:/.test(url)) {
+					pattern = prefs.allProtocols?'*://':(urlParser.protocol + '//');
+					// Split hostname into parts, if more than 2 and allSubdomains is set, make it wildcard
+					domParts = urlParser.hostname.split('.');
+					if (prefs.allSubdomains && domParts.length > 2) {
+						// Cut down hostname to two parts: domain.tld
+						while (domParts.length > 2) {
+							domParts.shift();
+						}
+						pattern += '*.' + domParts.join('.');
+					} else {
+						pattern += urlParser.hostname;
+					}
+					// If allPorts is set, add wildcard port, otherwise use given port, if set
+					pattern += prefs.allPorts?':*':(urlParser.port?':'+urlParser.port:'');
+					pattern += '/*';
+				}
 				
-				currHost=pattern;
+				currHost = pattern;
 				
 				// old method : url.replace(/\/[^\/]*?$/, '/*')
 				var newSetting = (setting == 'allow' ? 'block' : 'allow');
@@ -143,7 +162,7 @@ function changeSettings() {
 }
 
 
-
+/** Deletes all set cookies for current page */
 function clearCurrentCookies(){
 	
 	
@@ -318,13 +337,14 @@ function toggleContextMenu() {
 	}
 
 }
-
+/** Opens Chrome's Cookie Settings panel */
 function openCksPanel() {
 	return function(info, tab) {
 		chrome.tabs.create({"url":"chrome://settings/content/cookies", "selected":true});
 	};
 }
 
+/** Loads preferences and adds/removes context menu entry. */
 function init() {
 	
 	getLocalStoragePrefs();

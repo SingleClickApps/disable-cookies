@@ -6,6 +6,9 @@ function save() {
 	var prefs = JSON.parse(window.localStorage.cookies_on_off_prefs);
 	prefs.showContextMenu = document.getElementById("contextMenu").checked;
 	prefs.autoRefresh = document.getElementById("autoRefresh").checked;
+	prefs.allProtocols = document.getElementById("allProtocols").checked;
+	prefs.allSubdomains = document.getElementById("allSubdomains").checked;
+	prefs.allPorts = document.getElementById("allPorts").checked;
 	window.localStorage.cookies_on_off_prefs = JSON.stringify(prefs);
 	
 	chrome.extension.getBackgroundPage().init();
@@ -22,9 +25,15 @@ window.onload = function() {
 
 	document.getElementById("contextMenu").checked = prefs.showContextMenu;
 	document.getElementById("autoRefresh").checked = prefs.autoRefresh;
+	document.getElementById("allProtocols").checked = prefs.allProtocols;
+	document.getElementById("allSubdomains").checked = prefs.allSubdomains;
+	document.getElementById("allPorts").checked = prefs.allPorts;
 	
 	document.getElementById("contextMenu").onclick = function() { save(); };
 	document.getElementById("autoRefresh").onclick = function() { save(); };
+	document.getElementById("allProtocols").onclick = function() { save(); };
+	document.getElementById("allSubdomains").onclick = function() { save(); };
+	document.getElementById("allPorts").onclick = function() { save(); };
 	
 	document.getElementById("openCookieSettings").onclick = chrome.extension.getBackgroundPage().openCksPanel();
 
@@ -46,4 +55,3 @@ window.onload = function() {
 	};
 
 }
-
