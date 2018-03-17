@@ -1,9 +1,9 @@
 {	"name"					: "Disable Cookies"
-,	"version"				: "1.2.0"
+,	"version"				: "1.3.0"
 ,	"minimum_chrome_version": "16.0"
 ,	"manifest_version"		: 2
-,	"homepage_url"			: "http://singleclickapps.com/disable-cookies"
-,	"description"			: "Easily en-/disable cookies on current site."
+,	"homepage_url"			: "https://singleclickapps.com/disable-cookies"
+,	"description"			: "Disable cookies on current site"
 
 ,	"icons"					:
 		{ "16"				: "icon.png"
@@ -15,12 +15,11 @@
 		[ "tabs"
 		, "contentSettings"
 		, "contextMenus"
-		/*, "debugger"*/
 		, "browsingData"
 		, "cookies"
 		, "<all_urls>"
 		]
-
+, "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 ,	"browser_action"		:
 		{ "default_icon"	: "icon.png"
 		, "default_title" : "Disable Cookies"
@@ -29,6 +28,8 @@
 ,	"incognito"				: "spanning"
 ,	"background"			: 
 		{ "page": "background.html"
+		, "persistent" : true
 		}
 ,	"options_page"			: "options.html"
 }
+

@@ -1,4 +1,4 @@
-Images On/Off (Chrome Extension)
+Disable Cookies (Chrome Extension)
 Copyright © 2013, SingleClickApps.com
 
 ## Licensed under GPL:

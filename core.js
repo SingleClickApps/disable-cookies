@@ -1,8 +1,8 @@
 /*
  * Disable Cookies Chrome Extension
- * www.singleclickapps.com
+ * www.singleclickapps.com 
  *
- * Distributed under GPL License.
+ * Distributed under GPL License. 
  * https://github.com/SingleClickApps
  */
 
@@ -295,20 +295,22 @@ function getLocalStoragePrefs() {
 	}
 
 }
+//on uninstall 
+chrome.runtime.setUninstallURL('https://singleclickapps.com/disable-cookies/removed-chrome.html');
 
 // Check if the version has changed.
 function onInstall() {
 	if (rules.length) {	importRules(rules);	}
 //  console.log("Extension Installed");
 	if (navigator.onLine) {
-		chrome.tabs.create({url: 'http://singleclickapps.com/disable-cookies/instructions.html'});
+		chrome.tabs.create({url: 'https://singleclickapps.com/disable-cookies/instructions.html'});
 	}
 }
 function onUpdate() {
 	if (rules.length) {	importRules(rules);	}
 //  console.log("Extension Updated");
 	if (navigator.onLine) {
-		chrome.tabs.create({url: 'http://singleclickapps.com/disable-cookies/whatsnew.html'});
+		chrome.tabs.create({url: 'https://singleclickapps.com/disable-cookies/whatsnew-1.3.html'});
 	}
 }
 function getVersion() {
